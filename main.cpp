@@ -1,3 +1,13 @@
+/** @file
+ *
+ *  ZetaNet - Custom Neural Network Project
+ *
+ *  @author Spencer D. Pauly
+ *
+ *  @date 7 Aug 2018
+ *
+ *  @version 6.1 */
+
 #include <iostream>
 #include <time.h>
 #include <random>
@@ -8,6 +18,7 @@
 
 #include "NeuralNet.h"
 
+//Some hard-coded values necessary for success of the neural network (can be fixed but didn't have the time)
 std::vector < std::vector<double> > testBinaryVec = { {0,1,1,0,0,0,1,0},
                                                     {0,1,1,1,1,0,1,0} };
 
@@ -21,9 +32,15 @@ std::vector < std::vector<double> > EXCLAIMATION_POINT = { {1,1,1,1,1,1,1,0} };
 
 std::vector < std::vector<double> > QUESTION_MARK = { {1,1,1,1,1,1,1,1} };
 
-
 using namespace std;
 
+/**
+    * Stupidly long function that basically turns letter data stored in a string into binary values in each cell of a matrix
+    * that can be used to run through the already-trained neural net. Needs to be optimized, shortened and stuck in a class
+    * @pre oldMatrix must be the same height as the length of the number of characters in the input string & 8 columns long
+    * to accomidate for 8-digit binary ex. [0,1,1,0,0,0,0,1]
+    * @post will change values in inputted matrix to be in binary form and ready to be inputted into a trained neural net
+*/
 
 void addString(Matrix& oldMatrix, string input) {
     
@@ -82,25 +99,27 @@ void addString(Matrix& oldMatrix, string input) {
 
 }
 
+/*
+
+--- Head/Body Split ---
+
+*/
+
 int main() 
 {
 
     NeuralNet net;
     MatrixTools mt;
 
+    //INITIALIZE
     net.setConfig("doesntmatter");
-
     net.importData();
 
+    //TRAIN
     net.initialize();
-
     net.train();
 
-    //net.test("xorTest0.tsv");
-
-    
-    //Testing Part
-    
+    //TEST
     string userInput;
     cout << "enter string: " << endl;
     getline(cin, userInput);
@@ -108,16 +127,8 @@ int main()
     Matrix testMatrix(userInput.length(), 8);
 
     addString(testMatrix, userInput);
-    // cout << "Input Binary: ";
-    // testMatrix.print();
+
     net.test(testMatrix);
-
-    // Matrix testMat;
-    // testMat.vectorToMatrix(testBinaryVec);
-
-    // //testMat = mt.transpose(testMat);
-    // //net.test(testMat);
-
 
 
     return 0;
