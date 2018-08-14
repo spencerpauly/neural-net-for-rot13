@@ -19,3 +19,18 @@ This is an example of what the neural network does on a very small test sentence
   <img src="https://i.imgur.com/e60KhlX.png" width="350">
 </p>
 
+### Subprojects
+
+#### TSVReader Class
+
+This is a class I made to be able to read from .tsv files that I exported from google sheets. I realized pretty early on in this project that being able to read data files was going to be an absolute essential. This was my solution. The first line of the file is just ignored as header data, but in the future could be saved with the data. I could also make it read a specific part of the file instead of everything in the file, but decided not to overbuild the class for my uses in this project.
+
+#### Matrix Class
+
+This class is the heart of the project. This class took the most time for me to code as I built it during my CS1 and CS2 classes. As a beginner at the time most of it is very poorly optimized. If I were to do this project again this is the part I would use a library for, as I'm sure they'd know how to optimize it better than I ever could.
+
+#### MatrixTools Class
+
+This is a helper class that works closely with the Matrix class to manipulate 2 matrices together without being associated with one matrix in particular. I also threw random methods in there that had no good place anywhere else.
+
+
